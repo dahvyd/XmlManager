@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace XmlManager {
-	public abstract class XmlWriteable {
+	internal abstract class XmlWriteable {
 		protected abstract string XmlElementName();
 		protected abstract IXmlWriteableAttribute[] XmlAttributes();
 		protected abstract XmlWriteable[] XmlChildren();

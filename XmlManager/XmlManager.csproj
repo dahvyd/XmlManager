@@ -41,8 +41,8 @@
     <Compile Include="XmlAttributes.cs" />
     <Compile Include="XmlNode.cs" />
     <Compile Include="XmlProcessor.cs" />
-    <Compile Include="XmlWriteable.cs" />
     <Compile Include="XmlWriteableContainer.cs" />
+    <Compile Include="IXmlWriteable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

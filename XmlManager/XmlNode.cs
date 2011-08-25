@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 
 namespace XmlManager {
-	public class XmlNode : XmlWriteable {
-		public XmlNode(string name, XmlAttributes attributes, XmlNode parent, params XmlWriteable[] children) {
+	public class XmlNode : IXmlWriteable {
+		public XmlNode(string name, XmlAttributes attributes, XmlNode parent, params IXmlWriteable[] children) {
 			Name = name;
 			Attributes = attributes;
 			Parent = parent;
 			Children = children;
 		}
 
-		public void AddChild(XmlWriteable child) {
+		public void AddChild(IXmlWriteable child) {
 			_children.Add(child);
 		}
 
@@ -33,15 +33,15 @@ namespace XmlManager {
 			private set;
 		}
 
-		public XmlWriteable[] Children {
+		public IXmlWriteable[] Children {
 			get {
 				return _children != null ? _children.ToArray() : null;
 			}
 			private set {
-				_children = value != null ? new List<XmlWriteable>(value) : new List<XmlWriteable>();
+				_children = value != null ? new List<IXmlWriteable>(value) : new List<IXmlWriteable>();
 			}
 		}
-		private List<XmlWriteable> _children;
+		private List<IXmlWriteable> _children;
 
 		public XmlNode Parent {
 			get;
@@ -52,19 +52,19 @@ namespace XmlManager {
 
 		#region XmlWriteable methods
 
-		protected override string XmlElementName() {
+		public string XmlElementName() {
 			return Name;
 		}
 
-		protected override IXmlWriteableAttribute[] XmlAttributes() {
+		public IXmlWriteableAttribute[] XmlAttributes() {
 			return Attributes.ToArray();
 		}
 
-		protected override XmlWriteable[] XmlChildren() {
+		public IXmlWriteable[] XmlChildren() {
 			return Children;
 		}
 
-		protected override string XmlText() {
+		public string XmlText() {
 			return Text;
 		}
 

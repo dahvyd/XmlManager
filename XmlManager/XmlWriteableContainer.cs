@@ -8,18 +8,18 @@ namespace XmlManager {
 	/// Represents a generic container to hold XML nodes. Can be used where no internal data structures can logically hold
 	/// related nodes that should be grouped together in XML.
 	/// </summary>
-	public class XmlWriteableContainer : XmlWriteable {
-		public XmlWriteableContainer(string name, params XmlWriteable[] children) {
+	public class XmlWriteableContainer : IXmlWriteable {
+		public XmlWriteableContainer(string name, params IXmlWriteable[] children) {
 			Name = name;
-			Children = new List<XmlWriteable>(children);
+			Children = new List<IXmlWriteable>(children);
 		}
 
-		public List<XmlWriteable> Children {
+		private List<IXmlWriteable> Children {
 			get;
-			private set;
+			set;
 		}
 
-		public void Add(XmlWriteable node) {
+		public void Add(IXmlWriteable node) {
 			Children.Add(node);
 		}
 
@@ -30,19 +30,19 @@ namespace XmlManager {
 
 		#region XmlWriteable methods
 
-		protected override IXmlWriteableAttribute[] XmlAttributes() {
+		public IXmlWriteableAttribute[] XmlAttributes() {
 			return null;
 		}
 
-		protected override XmlWriteable[] XmlChildren() {
+		public IXmlWriteable[] XmlChildren() {
 			return Children.ToArray();
 		}
 
-		protected override string XmlText() {
+		public string XmlText() {
 			return "";
 		}
 
-		protected override string XmlElementName() {
+		public string XmlElementName() {
 			return Name;
 		}
 
