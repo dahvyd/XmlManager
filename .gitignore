@@ -30,3 +30,10 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 *.userprefs
+
+*UpgradeReport*
+Backup/*
+UpgradeLog.XML
+*.dll*
+*/bin/*
+*/bin/*
